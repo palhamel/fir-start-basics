@@ -1,4 +1,4 @@
-console.log(firebase);
+// console.log(firebase);
 
 const auth = firebase.auth();
 
@@ -10,10 +10,11 @@ const signOutBtn = document.getElementById("signOutBtn");
 
 const userDetails = document.getElementById("userDetails");
 
+// Sign in provider:
 const provider = new firebase.auth.GoogleAuthProvider();
 
 // Sign in event handlers:
 
+signInBtn.onclick = () => auth.signInWithPopup(provider);
 
-
-
+signOutBtn.onclick = () => auth.signOut();
