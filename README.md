@@ -1,4 +1,4 @@
-## Project testing Google Firebase, Auth and Firestore.
+## Project setting up and test Google Auth, Firebase and Firestore.
 
 * Login using Google auth.
 * Create random stuff and store in Google Firestore.
@@ -17,10 +17,6 @@
 
 
 ## View it live
-https://fir-start-basics.web.app/
+https://fir-start-basics.firebaseapp.com/
 
-
-
-
-
-
+![Alt Text](https://media.giphy.com/media/11sBLVxNs7v6WA/giphy.gif)
