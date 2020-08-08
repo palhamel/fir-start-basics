@@ -1,75 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-  <title>Great app here 🙏🏻</title>
-  <!-- The core Firebase JS SDK is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-firestore.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Great app here 🙏🏻</title>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-firestore.js"></script>
 
-  <!-- TODO: Add SDKs for Firebase products that you want to use
+    <!-- TODO: Add SDKs for Firebase products that you want to use
       https://firebase.google.com/docs/web/setup#available-libraries -->
-  <script>
-    // Your web app's Firebase configuration
-    var firebaseConfig = {
-      apiKey: "AIzaSyDPIKiIapBuZa0zFRUeSDexMhnXvuULWQE",
-      authDomain: "fir-start-basics.firebaseapp.com",
-      databaseURL: "https://fir-start-basics.firebaseio.com",
-      projectId: "fir-start-basics",
-      storageBucket: "fir-start-basics.appspot.com",
-      messagingSenderId: "903892659933",
-      appId: "1:903892659933:web:a37e0a84adcf5547ce3534"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-  </script> 
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyDPIKiIapBuZa0zFRUeSDexMhnXvuULWQE",
+        authDomain: "fir-start-basics.firebaseapp.com",
+        databaseURL: "https://fir-start-basics.firebaseio.com",
+        projectId: "fir-start-basics",
+        storageBucket: "fir-start-basics.appspot.com",
+        messagingSenderId: "903892659933",
+        appId: "1:903892659933:web:a37e0a84adcf5547ce3534",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
 
-  <script src="./app.js" defer></script>
+    <script src="./app.js" defer></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js"
-  integrity="sha512-/seDHxVfh1NvFUscAj8GsHQVZJvr2jjAoYsNL7As2FCaFHUHYIarl3sRCvVlFgyouVNiRgHIebyLKjpgd1SLDw=="
-  crossorigin="anonymous"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js"
+      integrity="sha512-/seDHxVfh1NvFUscAj8GsHQVZJvr2jjAoYsNL7As2FCaFHUHYIarl3sRCvVlFgyouVNiRgHIebyLKjpgd1SLDw=="
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
+  <body>
+    <div class="container">
+      <div class="jumbotron" style="background-color: rgb(246, 252, 249);">
+        <h3 class="display-4">Great app here 🍰</h3>
+        <h4 class="font-weight-normal">
+          All about me testing Google Firebase, Auth and Firestore.
+        </h4>
+        <ol class="lead">
+          <li>Login using Google auth.</li>
+          <li>Create random stuff and store in Google Firestore.</li>
+          <li>All stored items reflects here in a list.</li>
+          <li>Have fun. 🍹😄</li>
+        </ol>
+      </div>
 
-</head>
+      <div class="btn-toolbar mx-5 p-3">
+        <section id="whenSignedOut">
+          <button id="signInBtn" class="btn btn-primary mr-2">
+            Sign in with Google
+          </button>
+        </section>
 
-
-<body>
-
-  <h4>🍰 Great app here 🍹 </h4>
-
-  <section id="whenSignedOut">
-
-    <button id="signInBtn" class="btn btn-primary">Sign in with Google</button>
-
-  </section>
-
-  <section id="whenSignedIn" hidden="true">
-
-    <div id="userDetails"></div>
-
-    <button id="signOutBtn" class="btn btn-primary">Sign Out</button>
-
-  </section>
-  
-  <!-- Firestore: -->
-
-  <section>
-    <h2>My Firestore Stuff</h2>
-
-    <ul id="thingsList">
-
-    </ul>
-    <button id="createThing" class="btn btn-success">Create Random Thing</button>
-
-
-  </section>
-
-  
-
-
-</body>
+        <section id="whenSignedIn" hidden="true">
+          <div id="userDetails"></div>
+          <button id="signOutBtn" class="btn btn-warning" style="mb-10">
+            Sign Out
+          </button>
+        </section>
+      </div>
+      <!-- Firestore: -->
+      <div class="p-3">
+        <section class="card p-3">
+          <h5 class="h3 mb-3 font-weight-normal">Firestore database:</h5>
+          <ul id="thingsList" class="list-group-flush">
+            <li>You only see your database collection items when logged in.</li>
+            <li>
+              And you can only create "random things" when you are logged in.
+            </li>
+          </ul>
+          <button id="createThing" class="btn btn-success">
+            Create Random Things
+          </button>
+        </section>
+      </div>
+    </div>
+  </body>
 </html>

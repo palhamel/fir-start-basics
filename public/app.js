@@ -12,20 +12,17 @@ const userDetails = document.getElementById("userDetails");
 const provider = new firebase.auth.GoogleAuthProvider();
 
 // Sign in event handlers:
-
 signInBtn.onclick = () => auth.signInWithPopup(provider);
 
 signOutBtn.onclick = () => auth.signOut();
-// console.log(firebase);
 
 // Def state changes for user:
-
 auth.onAuthStateChanged((user) => {
   if (user) {
     // signed in:
     whenSignedIn.hidden = false;
     whenSignedOut.hidden = true;
-    userDetails.innerHTML = `<h2>Hello Mr/Mrs ${user.displayName}!</h2> <p>With user ID: ${user.uid} and email: ${user.email}</p>`;
+    userDetails.innerHTML = `<h2>Hello ${user.displayName}!</h2> <ul><li>Your user ID: ${user.uid}</li> <li>Your email: ${user.email}</li> </ul>`;
   } else {
     // not signed in:
     whenSignedIn.hidden = true;
@@ -34,8 +31,7 @@ auth.onAuthStateChanged((user) => {
   }
 });
 
-//firestore:
-
+// Setup firestore:
 const db = firebase.firestore();
 
 const createThing = document.getElementById("createThing");
@@ -46,7 +42,7 @@ let unsubscribe;
 
 auth.onAuthStateChanged((user) => {
   if (user) {
-    // Database Reference
+    // Database ref:
     thingsRef = db.collection("things");
 
     createThing.onclick = () => {
@@ -59,21 +55,23 @@ auth.onAuthStateChanged((user) => {
       });
     };
 
-    // Query
+    // Setting query:
     unsubscribe = thingsRef
       .where("uid", "==", user.uid)
-      .orderBy("createdAt") // Requires a query
+      .orderBy("createdAt") // Requires a query - Composite Indexes
       .onSnapshot((querySnapshot) => {
         // Map results to an array of li elements
 
         const items = querySnapshot.docs.map((doc) => {
-          return `<li>${doc.data().name}</li>`;
+          return `<li class="list-group-item list-group-item-action list-group-item-warning" >${
+            doc.data().name
+          }</li>`;
         });
 
         thingsList.innerHTML = items.join("");
       });
   } else {
-    // Unsubscribe when the user signs out
+    // Unsubscribe when the user signs out:
     unsubscribe && unsubscribe();
   }
 });
