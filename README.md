@@ -8,8 +8,8 @@
 
 #### Tech used: 
 - JavaScript
-- Firebase
-- Firestore
+- Google Firebase
+- Google Firestore
 - Google Auth
 - Bootstrap
 - Faker.js
